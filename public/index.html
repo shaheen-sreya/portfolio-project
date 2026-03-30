@@ -2,32 +2,80 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>Shaheen Sreya Portfolio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <section>
-        <h1>Welcome to My Portfolio</h1>
-        <p>Exploring web development and creating small projects.</p>
-    </section>
+<!-- NAVBAR -->
+<nav class="navbar">
+    <h2 class="logo">Portfolio</h2>
+    <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#works">Works</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Hello! I am a student exploring web development. I love creating small projects and learning new technologies.</p>
-    </section>
- 
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Fill in your details and I’ll get back to you!</p>
-        <form action="/contact" method="POST">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" rows="4" placeholder="Your Message"></textarea>
-            <button type="submit">Send</button>
-        </form>
-    </section>
+<!-- HERO -->
+<header class="hero">
+    <div class="hero-content">
+        <h1>Hi, I'm Shaheen Sreya</h1>
+        <p>Aspiring Cyber Security Student</p>
+    </div>
 
-    <script src="script.js"></script>
+    <img src="images/profile.jpg" class="profile-img">
+</header>
+
+<!-- ABOUT -->
+<section class="card" id="about">
+    <h2>About Me</h2>
+    <p>
+        I am a student exploring web development and cybersecurity, with a passion for building simple and meaningful digital experiences.
+    </p>
+</section>
+
+<!-- SKILLS -->
+<section class="card" id="skills">
+    <h2>Skills</h2>
+    <div class="skill-box">
+        <span>Python</span>
+        <span>MySQL</span>
+        <span>C Programming</span>
+    </div>
+</section>
+
+<!-- WORKS -->
+<section class="card" id="works">
+    <h2>My Works</h2>
+
+    <div class="work-item">
+        <h3>Portfolio Website</h3>
+        <p>A personal portfolio built using HTML, CSS, Node.js & MySQL.</p>
+    </div>
+
+    <div class="work-item">
+        <h3>Grocery App</h3>
+        <p>An online grocery shopping project with backend database.</p>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="card" id="contact">
+    <h2>Contact Me</h2>
+
+    <form id="contactForm">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <textarea id="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+<script src="script.js"></script>
 </body>
 </html>

@@ -1,25 +1,27 @@
-// script.js
-const form = document.getElementById("contactForm");
-const thankMsg = document.getElementById("thankMsg");
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-form.addEventListener("submit", function(e) {
-  e.preventDefault(); // prevent page reload
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
 
-  const formData = {
-    name: form.name.value,
-    email: form.email.value,
-    message: form.message.value
-  };
+    fetch("/contact", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name, email, message })
+    })
+    .then(res => res.text())
+    .then(data => {
+        console.log("Response:", data);
 
-  fetch("http://localhost:3000/contact", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(formData)
-  })
-  .then(response => response.text())
-  .then(data => {
-    thankMsg.textContent = data; // show thank you message
-    form.reset(); // clear the form
-  })
-  .catch(err => console.error(err));
+        setTimeout(() => {
+             window.location.href = "thankyou.html";
+        }, 300);
+    })
+    .catch(err => {
+        console.log(err);
+        alert("Error sending message");
+    });
 });

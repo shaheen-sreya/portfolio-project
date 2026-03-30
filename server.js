@@ -4,34 +4,41 @@ const mysql = require("mysql2");
 const cors = require("cors");
 
 const app = express();
-app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
+app.use(cors());
+app.use(express.json());
 app.use(express.static("public"));
 
-// Database connection
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "root", // your MySQL password
+    password: "root",
     database: "portfolio_db"
 });
 
 db.connect(err => {
-    if(err) throw err;
-    console.log("Database connected!");
+    if (err) console.log(err);
+    else console.log("MySQL Connected");
 });
 
-// POST API for contact form
 app.post("/contact", (req, res) => {
+    console.log("DATA RECEIVED:", req.body);
+
     const { name, email, message } = req.body;
+
     const sql = "INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)";
+
     db.query(sql, [name, email, message], (err, result) => {
-        if(err) throw err;
-        console.log("Sending thank you page");
-        res.sendFile(__dirname + "/public/thankyou.html");
+        if (err) {
+            console.log("SQL ERROR:", err);
+            res.send("Error");
+        } else {
+            console.log("INSERTED:", result);
+            res.send("Success");
+        }
     });
 });
 
-app.listen(3000, () => console.log("Server running on port 3000"));
+app.listen(3000, () => {
+    console.log("Server running on http://localhost:3000");
+});
